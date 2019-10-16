@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+    nginx:
+      image: nginx:latest
+      tty: true
+      volumes:
+        - ./nginx:/etc/nginx/conf.d
+        - ./www:/www
+      depends_on:
+        - php
+    php:
+      image: gao922699/php7.2-fpm-for-laravel
+      tty: true
+      working_dir: /www
+      volumes:
+        - ./www:/www
+        - ./php/php.ini:/usr/local/etc/php/php.ini
+    redis:
+      image: redis:latest
+    mysql:
+      image: mysql:5.7.22
+      volumes:
+        - ./mysql/backup:/backup
+        - ./mysql/data:/var/lib/mysql
+        - ./mysql/config:/etc/mysql
+      environment:
+        - MYSQL_ROOT_PASSWORD=root

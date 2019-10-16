@@ -1,0 +1,7 @@
+/mysql/data/*
+!/mysql/data/Readme.md
+/www/*
+!/www/index.php
+/nginx/*
+!/nginx/default.conf
+/docker-compose.override.yml
